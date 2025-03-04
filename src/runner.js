@@ -9,7 +9,7 @@ class AgentsJsonRunner {
     this.spec = null;
   }
 
-  // Load the agents.json file
+
   async loadSpec() {
     if (!this.spec) {
       const data = await fs.readFile(this.filePath, 'utf8');
@@ -18,7 +18,7 @@ class AgentsJsonRunner {
     return this.spec;
   }
 
-  // Run a specific chain
+  
   async runChain(chainId, params) {
     await this.loadSpec();
     const chain = this.spec.chains.find(c => c.id === chainId);
@@ -28,7 +28,7 @@ class AgentsJsonRunner {
     const baseUrl = this.spec.servers[0].url;
 
     for (const step of chain.steps) {
-      // Prepare request
+     
       const url = `${baseUrl}${substituteParams(step.path, params)}`;
       const method = step.method.toLowerCase();
       const stepParams = Object.fromEntries(
@@ -36,10 +36,10 @@ class AgentsJsonRunner {
       );
       const headers = getAuthHeaders(step.authentication, this.credentials);
 
-      // Execute API call
+   
       const response = await axios({ method, url, params: stepParams, headers });
       
-      // Process response
+      
       if (step.response_mapping) {
         result = {
           formatted_output: mapResponse(response.data, step.response_mapping, params)

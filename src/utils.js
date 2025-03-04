@@ -1,13 +1,11 @@
 const jsonpath = require('jsonpath');
 
-// Substitute placeholders like {city} with actual values
 function substituteParams(template, params) {
   return Object.keys(params).reduce((str, key) => {
     return str.replace(`{${key}}`, params[key]);
   }, template);
 }
 
-// Generate authentication headers
 function getAuthHeaders(authConfig, credentials) {
   if (!authConfig) return {};
   const key = authConfig.key.replace(/[{}]/g, ''); // Remove { and }
@@ -19,7 +17,7 @@ function getAuthHeaders(authConfig, credentials) {
   return {};
 }
 
-// Extract and format response data
+// this extracts and format response data
 function mapResponse(responseData, mapping, params) {
   const value = jsonpath.query(responseData, mapping.output)[0];
   return substituteParams(mapping.format, { ...params, output: value });

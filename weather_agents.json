@@ -1,0 +1,32 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Weather API",
+      "version": "1.0.0",
+      "description": "Get weather data for a city."
+    },
+    "chains": [
+      {
+        "id": "get-weather",
+        "description": "Fetches current weather for a city.",
+        "steps": [
+          {
+            "path": "/weather",
+            "method": "GET",
+            "parameters": {
+              "q": "{city}",
+              "appid": "{api_key}",
+              "units": "metric"
+            },
+            "response_mapping": {
+              "output": "$.main.temp",
+              "format": "The temperature in {city} is {output}°C."
+            }
+          }
+        ]
+      }
+    ],
+    "servers": [
+      {"url": "http://api.openweathermap.org/data/2.5"}
+    ]
+  }

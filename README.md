@@ -4,7 +4,7 @@ A **lightweight, generic runner** for `agents.json` files, built in **Node.js**.
 
 ---
 
-## 🚀 Features
+## Here are the Features
 
 ✅ **Generic Parsing** - Works with any `agents.json` file following the OpenAPI-based spec (e.g., chains, steps, servers).  
 ✅ **Dynamic Execution** - Executes HTTP requests (any method) with parameter substitution and response mapping.  
